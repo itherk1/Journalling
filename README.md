@@ -1,11 +1,22 @@
-<div align="center">
+# Aura Journal (v1.1.0)
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Created with love by Rishabh Kankane.
 
-  <h1>Built with AI Studio</h2>
+A secure, offline-first journal with biometric login, photo attachments, mood tracking, voice-to-text, and Gemini-powered reflection prompts. 
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## Features
+- **Daily Reflection Prompts:** Uses Gemini AI.
+- **Biometric Security:** Fast, private, and customizable app lock toggle.
+- **Mood Tracking:** Expanded mood vocabulary (Grateful, Hopeful, Generous, etc.) and analytics. 
+- **User Profile:** Manage Name, Age, and Gender for a personalized experience.
+- **Voice-to-Text:** Quick journaling using speech recognition.
+- **Smart Notifications:** Four daily check-ins (navigates to entry directly) and random motivational quotes.
+- **Photo Persistence:** Local internal storage of photo attachments so they don't disappear across restarts.
+- **Dynamic Theming:** Vivid, poppy, Material 3 design and animations.
+- **Records Dashboard:** Advanced daily widgets.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Version
+Current Version: 1.1.0
 
-</div>
+## License
+All Rights Reserved.

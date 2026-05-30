@@ -1,0 +1,6 @@
+{
+  "name": "Journal",
+  "description": "A secure, offline-first journal with biometric login, photo attachments, mood tracking, voice-to-text, and Gemini-powered reflection prompts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
