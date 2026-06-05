@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import com.example.workers.NotificationWorker
 import com.example.ui.JournalViewModel
 
@@ -18,11 +20,15 @@ fun SettingsScreen(viewModel: JournalViewModel) {
     val name by viewModel.name.collectAsState()
     val age by viewModel.age.collectAsState()
     val gender by viewModel.gender.collectAsState()
+    val focusArea by viewModel.focusArea.collectAsState()
+    val userGoals by viewModel.userGoals.collectAsState()
     val appLockEnabled by viewModel.appLockEnabled.collectAsState()
 
     var editName by remember { mutableStateOf(name) }
     var editAge by remember { mutableStateOf(age) }
     var editGender by remember { mutableStateOf(gender) }
+    var editFocusArea by remember { mutableStateOf(focusArea) }
+    var editGoals by remember { mutableStateOf(userGoals) }
     var showSave by remember { mutableStateOf(false) }
 
     // Request permission if Android 13+
@@ -39,12 +45,13 @@ fun SettingsScreen(viewModel: JournalViewModel) {
         NotificationWorker.scheduleWork(context)
     }
 
-    LaunchedEffect(editName, editAge, editGender) {
-        showSave = editName != name || editAge != age || editGender != gender
+    LaunchedEffect(editName, editAge, editGender, editFocusArea, editGoals) {
+        showSave = editName != name || editAge != age || editGender != gender || editFocusArea != focusArea || editGoals != userGoals
     }
 
+    // Scrollable Column to make room for new fields
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text("Settings", style = MaterialTheme.typography.headlineMedium)
@@ -72,10 +79,23 @@ fun SettingsScreen(viewModel: JournalViewModel) {
                         modifier = Modifier.weight(1f)
                     )
                 }
+                OutlinedTextField(
+                    value = editFocusArea,
+                    onValueChange = { editFocusArea = it },
+                    label = { Text("Focus Area") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+                OutlinedTextField(
+                    value = editGoals,
+                    onValueChange = { editGoals = it },
+                    label = { Text("User Goals") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+                
                 if (showSave) {
                     Button(
                         onClick = {
-                            viewModel.updateProfile(editName, editAge, editGender)
+                            viewModel.updateProfile(editName, editAge, editGender, editFocusArea, editGoals)
                             showSave = false
                         },
                         modifier = Modifier.fillMaxWidth()

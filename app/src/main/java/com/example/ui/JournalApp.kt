@@ -42,25 +42,25 @@ fun JournalApp(activity: FragmentActivity, viewModel: JournalViewModel, openNewE
             slideIntoContainer(
                 AnimatedContentTransitionScope.SlideDirection.Left,
                 animationSpec = tween(300)
-            )
+            ) + androidx.compose.animation.fadeIn(animationSpec = tween(300))
         },
         exitTransition = {
             slideOutOfContainer(
                 AnimatedContentTransitionScope.SlideDirection.Left,
                 animationSpec = tween(300)
-            )
+            ) + androidx.compose.animation.fadeOut(animationSpec = tween(300))
         },
         popEnterTransition = {
             slideIntoContainer(
                 AnimatedContentTransitionScope.SlideDirection.Right,
                 animationSpec = tween(300)
-            )
+            ) + androidx.compose.animation.fadeIn(animationSpec = tween(300))
         },
         popExitTransition = {
             slideOutOfContainer(
                 AnimatedContentTransitionScope.SlideDirection.Right,
                 animationSpec = tween(300)
-            )
+            ) + androidx.compose.animation.fadeOut(animationSpec = tween(300))
         }
     ) {
         composable("home") {
@@ -73,6 +73,10 @@ fun JournalApp(activity: FragmentActivity, viewModel: JournalViewModel, openNewE
         }
         composable(
             route = "add_edit?id={id}&prompt={prompt}",
+            deepLinks = listOf(
+                androidx.navigation.navDeepLink { uriPattern = "journal://entry/{id}" },
+                androidx.navigation.navDeepLink { uriPattern = "journal://new_entry?prompt={prompt}" }
+            ),
             arguments = listOf(
                 navArgument("id") {
                     type = NavType.IntType
@@ -91,7 +95,10 @@ fun JournalApp(activity: FragmentActivity, viewModel: JournalViewModel, openNewE
                 viewModel = viewModel,
                 entryId = entryId,
                 initialPrompt = promptArg,
-                onNavigateBack = { navController.popBackStack() }
+                onNavigateBack = { navController.popBackStack() },
+                onNavigateToEntry = { destinationId -> 
+                    navController.navigate("add_edit?id=$destinationId") 
+                }
             )
         }
     }

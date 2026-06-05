@@ -12,5 +12,11 @@ data class JournalEntry(
     val content: String,
     val timestamp: Long = System.currentTimeMillis(),
     val mood: String = "NEUTRAL", // HAPPY, SAD, NEUTRAL, EXCITED, ANXIOUS, etc.
-    val photoUri: String? = null // local string URI representing the photo
+    val photoUri: String? = null, // local string URI representing the photo (kept for compatibility)
+    val photoUris: List<String> = emptyList(), // added for multiple photos
+    val location: String? = null,
+    val linkedEntryIds: List<Int> = emptyList(),
+    val isPrompt: Boolean = false,
+    val backgroundColor: String? = null,
+    val fontFamily: String? = null
 )

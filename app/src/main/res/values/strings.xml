@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Journal</string>
+    <string name="app_name">Aura Journal</string>
+    <string name="widget_prompt_desc">Daily reflection prompts right on your home screen.</string>
+    <string name="widget_list_desc">View your recent journal entries.</string>
+    <string name="widget_mood_desc">See your mood trends over time.</string>
+    <string name="widget_mindmap_desc">A visual map of your connected journal entries.</string>
 </resources>

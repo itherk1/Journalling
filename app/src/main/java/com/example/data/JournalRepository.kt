@@ -20,4 +20,28 @@ class JournalRepository(private val journalDao: JournalDao) {
     suspend fun deleteById(id: Int) {
         journalDao.deleteEntryById(id)
     }
+
+    val allGoals: Flow<List<Goal>> = journalDao.getAllGoals()
+    
+    suspend fun insertGoal(goal: Goal) {
+        journalDao.insertGoal(goal)
+    }
+
+    suspend fun updateGoalStatus(id: Int, isAchieved: Boolean) {
+        journalDao.updateGoalStatus(id, isAchieved)
+    }
+
+    suspend fun deleteGoal(id: Int) {
+        journalDao.deleteGoal(id)
+    }
+
+    val allVisionItems: Flow<List<VisionItem>> = journalDao.getAllVisionItems()
+
+    suspend fun insertVisionItem(item: VisionItem) {
+        journalDao.insertVisionItem(item)
+    }
+
+    suspend fun deleteVisionItem(id: Int) {
+        journalDao.deleteVisionItem(id)
+    }
 }

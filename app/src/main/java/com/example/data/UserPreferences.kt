@@ -15,6 +15,15 @@ class UserPreferences(context: Context) {
     fun getGender() = prefs.getString("gender", "") ?: ""
     fun setGender(gender: String) = prefs.edit().putString("gender", gender).apply()
 
+    fun getFocusArea() = prefs.getString("focusArea", "") ?: ""
+    fun setFocusArea(focusArea: String) = prefs.edit().putString("focusArea", focusArea).apply()
+
+    fun getGoals() = prefs.getString("goals", "") ?: ""
+    fun setGoals(goals: String) = prefs.edit().putString("goals", goals).apply()
+
+    fun isFirstTimeOpen() = prefs.getBoolean("first_time_open", true)
+    fun setFirstTimeOpen(isFirst: Boolean) = prefs.edit().putBoolean("first_time_open", isFirst).apply()
+
     fun isAppLockEnabled() = prefs.getBoolean("app_lock", true)
     fun setAppLockEnabled(enabled: Boolean) = prefs.edit().putBoolean("app_lock", enabled).apply()
 }

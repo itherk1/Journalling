@@ -22,4 +22,27 @@ interface JournalDao {
 
     @Query("DELETE FROM journal_entries WHERE id = :id")
     suspend fun deleteEntryById(id: Int)
+
+    // Goals CRUD
+    @Query("SELECT * FROM goals ORDER BY targetDate ASC")
+    fun getAllGoals(): Flow<List<Goal>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertGoal(goal: Goal)
+    
+    @Query("UPDATE goals SET isAchieved = :isAchieved WHERE id = :id")
+    suspend fun updateGoalStatus(id: Int, isAchieved: Boolean)
+
+    @Query("DELETE FROM goals WHERE id = :id")
+    suspend fun deleteGoal(id: Int)
+
+    // Vision CRUD
+    @Query("SELECT * FROM vision_items")
+    fun getAllVisionItems(): Flow<List<VisionItem>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertVisionItem(item: VisionItem)
+
+    @Query("DELETE FROM vision_items WHERE id = :id")
+    suspend fun deleteVisionItem(id: Int)
 }

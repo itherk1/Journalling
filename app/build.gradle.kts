@@ -15,8 +15,8 @@ android {
     applicationId = "com.aistudio.journal.xywqrs"
     minSdk = 24
     targetSdk = 36
-    versionCode = 2
-    versionName = "1.1.0"
+    versionCode = 9
+    versionName = "1.4.1"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -81,6 +81,10 @@ dependencies {
   implementation(libs.androidx.compose.material.icons.core)
   implementation(libs.androidx.compose.material.icons.extended)
   implementation(libs.androidx.compose.material3)
+  implementation("androidx.compose.material3:material3-window-size-class")
+  implementation("androidx.glance:glance-appwidget:1.1.0")
+  implementation("androidx.glance:glance-material3:1.1.0")
+  implementation("com.google.android.gms:play-services-location:21.2.0")
   implementation(libs.androidx.compose.ui)
   implementation(libs.androidx.compose.ui.graphics)
   implementation(libs.androidx.compose.ui.tooling.preview)
